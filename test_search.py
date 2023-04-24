@@ -18,5 +18,3 @@ def test_search_for_an_invalid_product():
     assert driver.find_element(By.XPATH,"//div[@class='no-result']").text.__eq__(expected_text)
     driver.quit()
     
-
-
