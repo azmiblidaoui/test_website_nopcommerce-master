@@ -1,10 +1,15 @@
+import pytest 
 from selenium import webdriver
 from selenium.webdriver.common.by import By 
-import time
-def test_login_with_valid_credentials():
+@pytest.fixture()
+def setUp_and_teardown():
+    global driver
     driver = webdriver.Chrome()
     driver.maximize_window()
     driver.get("https://demo.nopcommerce.com/")
+    yield
+    driver.quit()
+def test_login_with_valid_credentials(setUp_and_teardown):
     driver.find_element(By.XPATH,"//a[@class='ico-login']").click()
     driver.find_element(By.ID,"Email").send_keys("tt5820724@gmail.com")
     driver.find_element(By.ID,"Password").send_keys("azerty@@123")
